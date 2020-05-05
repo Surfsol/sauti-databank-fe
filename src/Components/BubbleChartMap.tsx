@@ -1,4 +1,4 @@
-// Bubble Chart Map Component Goes Here
+import { useSelector } from "react-redux";
 import {
   LayerEvent,
   LineLayer,
@@ -75,6 +75,8 @@ function joinData(geodata: any, ncovData: any) {
 }
 
 const World = React.memo(function Map() {
+  // const reduxData = useSelector(state => state.queriesReducer.dataInfo);
+  // console.log(reduxData);
   const [data, setData] = React.useState();
   const [filldata, setfillData] = React.useState();
   const [popupInfo, setPopupInfo] = React.useState<{
@@ -277,4 +279,4 @@ const World = React.memo(function Map() {
     </>
   );
 });
-ReactDOM.render(<World />, document.getElementById("map"));
+export default World;

@@ -7,6 +7,7 @@ import DownloadModal from "../dashboard/DownloadModal";
 import styled from "styled-components";
 import { getSelectedOption } from "../OptionFunctions";
 import { useHistory } from "react-router-dom";
+
 const Graph = props => {
   let {
     data,
