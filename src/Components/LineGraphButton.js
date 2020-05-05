@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LineGraph from "./LineGraph/LineGraph";
 import Graph from "./Graph";
 import ChoroplethParent from "../Components/ChoroplethMap/ChoroplethParent";
+import BubbleChartMap from "./BubbleMap/BubbleChartMap";
 
 import "./scss/lineGraphButton.scss";
 
@@ -65,6 +66,7 @@ const LineGraphButton = props => {
       return (
         <>
           <h1>Dot Map</h1>
+          <BubbleChartMap />
         </>
       );
     } else {

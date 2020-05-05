@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import "../scss/choropleth.scss";
 import {
   LayerEvent,
   LineLayer,

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BubbleChartMap from "./BubbleChartMap";
+import BubbleChartMap from "./BubbleMap/BubbleChartMap";
 
 //styled-component
 const Datafooter = styled.div`
