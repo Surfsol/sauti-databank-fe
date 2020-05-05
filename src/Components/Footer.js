@@ -61,26 +61,24 @@ const Datafooter = styled.div`
 
 export const Footer = () => {
   return (
-    <div>
-      <Datafooter className="landing-page-row-col-bot-footer">
-        <div className="col-bot-footer-row">
-          <div className="col-bot-footer-row-col-top">
-            <p>
-              Sauti Databank is a non-profit organization working to improve the
-              lives of African people trading their goods accross the borders in
-              Kenyan, Ugandan, and Rwandan. We are excited to work with
-              researchers and government officials alike to improve laws and
-              make the lives of traders better.
-            </p>
-          </div>
-          <div className="col-bot-footer-row-col-bot">
-            <div className="footer-col-bot-footer-list">
-              <span>Privacy Policy</span>
-              <span>Terms of Services</span>
-            </div>
+    <Datafooter className="landing-page-row-col-bot-footer">
+      <div className="col-bot-footer-row">
+        <div className="col-bot-footer-row-col-top">
+          <p>
+            Sauti Databank is a non-profit organization working to improve the
+            lives of African people trading their goods accross the borders in
+            Kenyan, Ugandan, and Rwandan. We are excited to work with
+            researchers and government officials alike to improve laws and make
+            the lives of traders better.
+          </p>
+        </div>
+        <div className="col-bot-footer-row-col-bot">
+          <div className="footer-col-bot-footer-list">
+            <span>Privacy Policy</span>
+            <span>Terms of Services</span>
           </div>
         </div>
-      </Datafooter>
-    </div>
+      </div>
+    </Datafooter>
   );
 };
