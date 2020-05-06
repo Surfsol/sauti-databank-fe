@@ -76,12 +76,12 @@ const dataParse = (
 const filterByDate = (data, startDate, endDate) => {
   startDate = startDate.replace(/-/g, "");
   endDate = endDate.replace(/-/g, "");
-
+  console.log(data, startDate, endDate);
   const filteredData = data.filter(obj => {
     const objectDate = +obj.created_date.split("T")[0].replace(/-/g, "");
     return objectDate > startDate && objectDate < endDate;
   });
-
+  console.log(filteredData);
   return filteredData;
 };
 

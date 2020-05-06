@@ -28,6 +28,7 @@ import { getRangePeriods } from "../LineGraphHelpers/Range";
 
 const LineGraph = ({ filter0, buttonBar, data }) => {
   //const data = useSelector(state => state.queriesReducer.dataInfo);
+  console.log(data);
   const lineArray = data.sessionsData;
 
   //Make an array of options that can be selected.

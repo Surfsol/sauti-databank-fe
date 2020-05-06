@@ -7,7 +7,7 @@ import dataParse from "./dataParse";
 import { getSelectedOption } from "../OptionFunctions";
 import LineGraphButton from "./LineGraphButton";
 
-import { getQuery } from "../redux/actions/queriesAction";
+import { seperateMultiples } from "./queriesParcer";
 import { useSelector, useDispatch } from "react-redux";
 
 const GetData = props => {
@@ -132,6 +132,7 @@ const GetData = props => {
     variables: { queryTraders: thisQuery }
   });
 
+  // (data !== undefined && queryType === "sessionsData") ? seperateMultiples(data): console.log('not sessionsData')
   // useEffect(() => {
   //   dispatch(getQuery(data));
   // }, [data]);
