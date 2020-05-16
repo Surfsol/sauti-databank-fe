@@ -12,9 +12,11 @@ const token = process.env.REACT_APP_MAPBOX;
 class SearchableMap extends Component {
   state = {
     viewport: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 1
+      latitude: -2.5164,
+      longitude: 32.9175,
+      width: "100%",
+      height: "100vh",
+      zoom: 4
     },
     searchResultLayer: null
   };

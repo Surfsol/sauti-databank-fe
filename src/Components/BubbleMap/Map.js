@@ -15,11 +15,11 @@ const Map = () => {
   const [viewport, setViewPort] = useState({
     width: "100%",
     height: 900,
-    latitude: 0,
-    longitude: 0,
-    zoom: 2
+    latitude: -2.5164,
+    longitude: 32.9175,
+    zoom: 5
   });
-
+  console.log(`viewport`, viewport);
   const _onViewportChange = viewport =>
     setViewPort({ ...viewport, transitionDuration: 3000 });
 
@@ -28,8 +28,7 @@ const Map = () => {
       <h1
         style={{ textAlign: "center", fontSize: "25px", fontWeight: "bolder" }}
       >
-        GeoLocator: Click To Find Your Location or click{" "}
-        <a href="/search">here</a> to search for a location
+        Sauti Markets
       </h1>
       <MapGL
         {...viewport}

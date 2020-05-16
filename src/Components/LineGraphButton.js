@@ -59,7 +59,7 @@ const LineGraphButton = props => {
     if (open === "bubble") {
       return (
         <>
-          <Search />
+          <Map />
         </>
       );
     } else {
