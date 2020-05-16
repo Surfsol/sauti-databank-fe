@@ -14,11 +14,16 @@ const geolocateStyle = {
 const Map = () => {
   const [viewport, setViewPort] = useState({
     width: "100%",
-    height: 900,
+    height: 700,
     latitude: -2.5164,
     longitude: 32.9175,
     zoom: 5
   });
+
+  const marketZoom = { width: "100%", height: 700, zoom: 14 };
+  const BusiaUG = { latitude: 0.469308, longitude: 34.091532 };
+  const BusiaKen = { latitude: 0.399068, longitude: 37.967861 };
+  const Chimbiya = { latitude: -13.45987, longitude: 33.548662 };
   console.log(`viewport`, viewport);
   const _onViewportChange = viewport =>
     setViewPort({ ...viewport, transitionDuration: 3000 });
@@ -42,6 +47,20 @@ const Map = () => {
           trackUserLocation={true}
         />
       </MapGL>
+      {/* <button onClick={()=>setViewPort({width: "100%",
+    height: 700, latitude:0.469308, longitude:34.091532, zoom: 14})}>Busia, UGA</button> */}
+      <button onClick={() => setViewPort({ ...marketZoom, ...BusiaUG })}>
+        Busia, UGA
+      </button>
+      <button onClick={() => setViewPort({ ...marketZoom, ...BusiaKen })}>
+        Busia, Ken
+      </button>
+      <button onClick={() => setViewPort({ ...marketZoom, ...Chimbiya })}>
+        Chimbiya, MWI
+      </button>
+      {/* 10,0.469308,34.091532,Busia,UGA
+      11,0.399068,37.967861,Busia,KEN
+12,-13.45987,33.548662,Chimbiya,MWI */}
     </div>
   );
 };

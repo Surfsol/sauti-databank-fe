@@ -15,7 +15,7 @@ class SearchableMap extends Component {
       latitude: -2.5164,
       longitude: 32.9175,
       width: "100%",
-      height: "100vh",
+      height: 700,
       zoom: 4
     },
     searchResultLayer: null
