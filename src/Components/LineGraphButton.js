@@ -2,7 +2,9 @@ import React from "react";
 import LineGraph from "./LineGraph/LineGraph";
 import GraphParse from "./GraphParse";
 import ChoroplethParent from "../Components/ChoroplethMap/ChoroplethParent";
-
+import Bubble from "../Components/BubbleMap/Bubble";
+import Map from "../Components/BubbleMap/Map";
+import Search from "../Components/BubbleMap/Search";
 import "./scss/lineGraphButton.scss";
 
 const LineGraphButton = props => {
@@ -53,17 +55,17 @@ const LineGraphButton = props => {
     }
   };
 
-  const renderDotMap = () => {
-    if (open === "dot") {
+  const renderBubbleMap = () => {
+    if (open === "bubble") {
       return (
         <>
-          <h1>Dot Map</h1>
+          <Search />
         </>
       );
     } else {
       return (
-        <button className="bubble-map" onClick={() => setOpen("dot")}>
-          Display Dot map
+        <button className="bubble-map" onClick={() => setOpen("bubble")}>
+          Display Bubble map
         </button>
       );
     }
@@ -96,7 +98,7 @@ const LineGraphButton = props => {
         {renderBar()}
         {renderLine()}
         {renderChoroplethMap()}
-        {renderDotMap()}
+        {renderBubbleMap()}
       </>
     );
   } else {
@@ -105,7 +107,7 @@ const LineGraphButton = props => {
         <p>Line Graph not Available with 'Key Demographics' Data Series</p>
         {renderBar()}
         {renderChoroplethMap()}
-        {renderDotMap()}
+        {renderBubbleMap()}
       </>
     );
   }
