@@ -1,0 +1,19 @@
+{
+  "type": "geojson",
+  "data": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "<strong>Make it Mount Pleasant</strong><p> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>",
+          "icon": "theatre"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [0.469308, 34.091532]
+        }
+      }
+    ]
+  }
+}

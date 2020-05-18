@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import MapGL, { GeolocateControl } from "react-map-gl";
 //import config from '../config'
+
+import Pin from "./Pin";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const TOKEN = process.env.REACT_APP_MAPBOX;
@@ -19,14 +21,14 @@ const Map = () => {
     longitude: 32.9175,
     zoom: 5
   });
-
+  const resetZoom = { latitude: -2.5164, longitude: 32.9175 };
   const marketZoom = { width: "100%", height: 700, zoom: 14 };
   const BusiaUG = { latitude: 0.469308, longitude: 34.091532 };
   const BusiaKen = { latitude: 0.399068, longitude: 37.967861 };
   const Chimbiya = { latitude: -13.45987, longitude: 33.548662 };
   console.log(`viewport`, viewport);
   const _onViewportChange = viewport =>
-    setViewPort({ ...viewport, transitionDuration: 3000 });
+    setViewPort({ ...viewport, transitionDuration: 500 });
 
   return (
     <div style={{ margin: "0 auto" }}>
@@ -46,9 +48,26 @@ const Map = () => {
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
         />
+        <Pin
+        //currentlySelected={Object.keys(currentlySelected).length}
+        //   markets={markets}
+        />
       </MapGL>
       {/* <button onClick={()=>setViewPort({width: "100%",
     height: 700, latitude:0.469308, longitude:34.091532, zoom: 14})}>Busia, UGA</button> */}
+      <button
+        onClick={() =>
+          setViewPort({
+            width: "100%",
+            height: 700,
+            latitude: -2.5164,
+            longitude: 32.9175,
+            zoom: 5
+          })
+        }
+      >
+        Reset
+      </button>
       <button onClick={() => setViewPort({ ...marketZoom, ...BusiaUG })}>
         Busia, UGA
       </button>
