@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MapGL, { GeolocateControl } from "react-map-gl";
 //import config from '../config'
+import markets from "./bubbleData.json";
 
 import Pin from "./Pin";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -49,8 +50,8 @@ const Map = () => {
           trackUserLocation={true}
         />
         <Pin
-        //currentlySelected={Object.keys(currentlySelected).length}
-        //   markets={markets}
+          //currentlySelected={Object.keys(currentlySelected).length}
+          markets={markets.data.features}
         />
       </MapGL>
       {/* <button onClick={()=>setViewPort({width: "100%",

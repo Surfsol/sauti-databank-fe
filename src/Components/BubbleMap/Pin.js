@@ -2,18 +2,28 @@ import React from "react";
 import { Marker } from "react-map-gl";
 import circle from "./images/circle.svg";
 
-const Pin = ({ market }) => {
+const Pin = ({ markets }) => {
+  console.log(markets.features);
+
   return (
     <>
-      <Marker key={1} latitude={0.469308} longitude={34.091532}>
-        <img
-          //onClick={() => handleClick(sensor)}
-          className="circle"
-          src={circle}
-          alt="location"
-        />
-      </Marker>
+      {markets.map(e => {
+        let coordinates = e.geometry.coordinates;
+        console.log(coordinates[0]);
+        console.log(coordinates[1]);
+        return (
+          <Marker key={e} latitude={coordinates[0]} longitude={coordinates[1]}>
+            <img
+              //onClick={() => handleClick(sensor)}
+              className="circle"
+              src={circle}
+              alt="location"
+            />
+          </Marker>
+        );
+      })}
     </>
   );
 };
+
 export default Pin;
