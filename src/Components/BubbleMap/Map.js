@@ -20,9 +20,12 @@ const Map = () => {
     height: 700,
     latitude: -2.5164,
     longitude: 32.9175,
-    zoom: 5
+    zoom: 4.5
   });
-  const resetZoom = { latitude: -2.5164, longitude: 32.9175 };
+  const resetZoom = {
+    latitude: -3.093305202585686,
+    longitude: 28.62832547447448
+  };
   const marketZoom = { width: "100%", height: 700, zoom: 14 };
   const BusiaUG = { latitude: 0.469308, longitude: 34.091532 };
   const BusiaKen = { latitude: 0.399068, longitude: 37.967861 };
@@ -63,7 +66,7 @@ const Map = () => {
             height: 700,
             latitude: -2.5164,
             longitude: 32.9175,
-            zoom: 5
+            zoom: 4.5
           })
         }
       >
