@@ -3,7 +3,6 @@ import "./App.scss";
 import "./index.css";
 import FilterBox from "./Components/FilterBox";
 import "react-dropdown/style.css";
-import { withRouter, useParams, useHistory } from "react-router-dom";
 
 import Queries2 from "./Components/Queries2";
 import useCalendar from "../src/hooks/useCalendar";

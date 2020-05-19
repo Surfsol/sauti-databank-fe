@@ -364,10 +364,9 @@ const SocialMediaContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
 
-  border: 0.5px solid lightgrey;
   padding: 5px;
-  margin-bottom: 5px;
   font-size: 1.6rem;
 `;
 const SocialMediaIconsTwitter = styled.a`
