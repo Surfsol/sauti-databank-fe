@@ -46,29 +46,33 @@ const Pin = ({ markets }) => {
               latitude={coordinates[0]}
               longitude={coordinates[1]}
             >
-              <img
-                onClick={() => handleClick(e)}
+              {/* <img
+                onMouseOver={() => handleClick(e)}
                 className="circle"
                 src={circle}
                 alt="location"
-              />
-              {/* {selectedMkt !== {} ? (
-                console.log(`selectedMkt`, e)
-              <Popup
-                className="popupCard"
-                latitude={e.geometry.coordinates[0]}
-                longitude={e.geometry.coordinates[1]}
-                onClose={() => {
-                  handleClick({});
-                }}
-                //closeOnClick={false}
-              >
-                
-                <PopupInfo
-               description={e.properties.description}
-              />
-              </Popup>
-            ) : null} */}
+              /> */}
+
+              {/* <svg >
+  <circle onMouseOver={() => handleClick(e)}  style={{height:"100", width:"100", cx:"50", cy:"50", r:"4",  stroke:"black", strokeWidth:"3", fill:"red"}} />
+</svg> */}
+              <div style={{ height: "9rem", width: "9rem" }}>
+                <circle
+                  onMouseOver={() => handleClick(e)}
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    opacity: ".4",
+                    //r:100,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    borderRadius: 50,
+                    backgroundColor: "red",
+                    alignItems: "start",
+                    justifyContent: "start"
+                  }}
+                ></circle>
+              </div>
             </Marker>
             {popUpReturn()}
           </>

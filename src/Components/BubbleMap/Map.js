@@ -52,10 +52,7 @@ const Map = () => {
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
         />
-        <Pin
-          //currentlySelected={Object.keys(currentlySelected).length}
-          markets={markets.data.features}
-        />
+        <Pin markets={markets.data.features} />
       </MapGL>
       {/* <button onClick={()=>setViewPort({width: "100%",
     height: 700, latitude:0.469308, longitude:34.091532, zoom: 14})}>Busia, UGA</button> */}

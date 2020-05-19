@@ -6,7 +6,7 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "<strong>Busia, Uganda</strong><p> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>",
+          "description": "Busia, Uganda: 30%",
           "icon": "theatre"
         },
         "geometry": {
@@ -17,7 +17,7 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "<strong>Chimbiya</strong><p> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>",
+          "description": "Chimbiya:15%",
           "icon": "theatre"
         },
         "geometry": {
