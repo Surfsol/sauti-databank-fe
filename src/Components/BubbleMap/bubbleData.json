@@ -12,7 +12,8 @@
         "geometry": {
           "type": "Point",
           "coordinates": [0.469308, 34.091532]
-        }
+        },
+        "category": { "Final Destination Market": 18 }
       },
       {
         "type": "Feature",
@@ -23,7 +24,8 @@
         "geometry": {
           "type": "Point",
           "coordinates": [-13.45987, 33.548662]
-        }
+        },
+        "Final Destination Market": 6
       }
     ]
   }

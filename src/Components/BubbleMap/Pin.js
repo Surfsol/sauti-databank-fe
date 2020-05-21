@@ -37,6 +37,8 @@ const Pin = ({ markets }) => {
     <>
       {markets.map(e => {
         let coordinates = e.geometry.coordinates;
+        let catNum = e.category;
+        let category = Object.keys(catNum);
         console.log(coordinates[0]);
         console.log(coordinates[1]);
         return (
@@ -53,11 +55,24 @@ const Pin = ({ markets }) => {
                 alt="location"
               /> */}
 
-              {/* <svg >
-  <circle onMouseOver={() => handleClick(e)}  style={{height:"100", width:"100", cx:"50", cy:"50", r:"4",  stroke:"black", strokeWidth:"3", fill:"red"}} />
-</svg> */}
-              <div style={{ height: "9rem", width: "9rem" }}>
+              <svg>
                 <circle
+                  onMouseOver={() => handleClick(e)}
+                  style={{
+                    height: "100",
+                    width: "100",
+                    cx: "4",
+                    cy: "4",
+                    r: "4",
+                    fill: "red",
+                    opacity: ".3"
+                  }}
+                />
+              </svg>
+
+              {/* bubble - make a circle, size should be expandable */}
+              {/* <div style={{ height: "9rem", width: "9rem" }}> */}
+              {/* <circle
                   onMouseOver={() => handleClick(e)}
                   style={{
                     height: "100%",
@@ -71,8 +86,8 @@ const Pin = ({ markets }) => {
                     alignItems: "start",
                     justifyContent: "start"
                   }}
-                ></circle>
-              </div>
+                ></circle> */}
+              {/* </div> */}
             </Marker>
             {popUpReturn()}
           </>
