@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ResponsiveBar } from "@nivo/bar";
 import CsvDownloader from "react-csv-downloader";
+import downloadImg from "../assets/images/download.png";
 import { Event } from "../dashboard/GoogleAnalytics/index";
 import { getSubscription, getToken, decodeToken } from "../dashboard/auth/Auth";
 import DownloadModal from "../dashboard/DownloadModal";

@@ -195,14 +195,30 @@ $greyColor: #4d4f52;
     height: 4vw;
     position: absolute;
     top: 10%;
-    // align-items: center;
+    h3 {
+      display: flex;
+      font-size: 1.2rem;
+      align-items: center;
+    }
     .graph-title-small {
+      display: flex;
+      align-items: center;
       font-size: 1.1rem;
       padding: 0 0 0 10px;
     }
-    .graph-title-diplay {
+    .graph-title-additional {
+      width: 100%;
+    }
+    .graph-title-small-addon {
       display: flex;
-      width: 35%;
+      align-items: center;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    .graph-title-display {
+      display: flex;
+      width: 21%;
       margin: 0;
     }
   }
