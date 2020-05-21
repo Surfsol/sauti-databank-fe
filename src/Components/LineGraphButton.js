@@ -39,9 +39,7 @@ const LineGraphButton = props => {
             {filters[2].selectedTableColumnName && (
               <div className="graph-title-display">
                 <h1 className="graph-title">Additional Filter</h1>
-                <h2 className="graph-title-small-addon">
-                  {makeFilterList()} |
-                </h2>
+                <h2 className="graph-title-small-addon">{makeFilterList()}</h2>
               </div>
             )}
           </div>
@@ -138,9 +136,7 @@ const LineGraphButton = props => {
             {filters[2].selectedTableColumnName && (
               <div className="graph-title-display">
                 <h3 className="graph-title-additional">Additional Filter:</h3>
-                <h2 className="graph-title-small-addon">
-                  {makeFilterList()} |
-                </h2>
+                <h2 className="graph-title-small-addon">{makeFilterList()}</h2>
               </div>
             )}
           </div>

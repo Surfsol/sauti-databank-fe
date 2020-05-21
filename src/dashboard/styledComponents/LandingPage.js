@@ -29,7 +29,16 @@ export const LandingPageStyles = styled.div`
     }
 
     
-
+    .landing-page-row-col-top{
+      background: #f5f5f5;
+      opacity:85%;
+      border-radius: 18px;
+      padding: 1%
+      position: absolute;
+      top: 35%;
+      -webkit-box-shadow: -1px 7px 28px 4px rgba(0,0,0,0.31); 
+box-shadow: -1px 7px 28px 4px rgba(0,0,0,0.31);
+    
       .top-col-top {
         display: flex;
         justify-content: center;
@@ -39,12 +48,12 @@ export const LandingPageStyles = styled.div`
         h2 {
           color: #2c2e32;
           font-weight: 400;
-          font-size: 2.5rem;
+          font-size: 2.0rem;
 
           @media ${device.desktopXL} {
             /* greater than 3115px  */
             font-weight: 400;
-            font-size: 4.5rem;
+            font-size: 2.5rem;
             -webkit-min-device-pixel-ratio: 1;
           }
         }
@@ -61,7 +70,7 @@ export const LandingPageStyles = styled.div`
           color: #2c2e32;
           padding: 0.5rem;
           font-weight: 800;
-          font-size: 3rem;
+          font-size: 2.5rem;
 
           @media ${device.desktopXL} {
             /* greater than 3115px  */
@@ -78,7 +87,7 @@ export const LandingPageStyles = styled.div`
         align-items: center;
         width: 100%;
         height: 33.33%;
-        margin-top: 2%;
+        
 
         button {
           font-family: Montserrat;
@@ -155,10 +164,11 @@ export const LandingPageStyles = styled.div`
               rgba(255, 255, 255, 0.6)
             );
             cursor: pointer;
+            }
           }
         }
       }
-    }
+    
   }
 
   .landing-page-row-col-mid {
@@ -193,6 +203,7 @@ export const LandingPageStyles = styled.div`
       border-top: 2px solid rgba(0, 0, 0, 0.1);
       border-bottom: 2px solid rgba(0, 0, 0, 0.1);
       height: 30rem;
+      margin-top:10%;
       
 
       .bot-col-header {
@@ -259,10 +270,10 @@ export const LandingPageStyles = styled.div`
         .col-learn-more {
           padding: 1rem;
           button {
-            height: 2vw;
+            height: 3.5vw;
             width: 10vw;
             font-weight: 500;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #2c2e32;
             background: transparent;
             border: 2px solid rgba(0, 0, 0, 0.3);

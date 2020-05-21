@@ -154,10 +154,10 @@ const GetData = props => {
       .filter(filterId => filterId >= 2)
       .map(filterId => {
         return (
-          <p>
+          <h2 className="additional-filters">
             {filters[filterId].selectedCategory} -{" "}
             {getSelectedOption(filters, filterId)}
-          </p>
+          </h2>
         );
       });
   };
