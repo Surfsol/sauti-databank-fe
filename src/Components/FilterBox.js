@@ -7,9 +7,11 @@ import graphLabels from "./graphLabels";
 import { colourOptions, groupedOptions } from "./docs/data";
 import useCalendar, { getTodaysDate } from "../hooks/useCalendar";
 import { useHistory } from "react-router-dom";
-import CalendarModal from "../dashboard/CalendarModal";
+//import CalendarModal from "../dashboard/CalendarModal";
 import { decodeToken, getToken, getSubscription } from "../dashboard/auth/Auth";
 import { getAvaliableOptions, getSelectedOption } from "../OptionFunctions";
+import CalendarParent from "../dashboard/CalendarParent";
+import RenderCheckContainer from "./FilterBoxComponents/RenderCheckContainer";
 
 export default function FilterBox(props) {
   const History = useHistory();
@@ -22,14 +24,19 @@ export default function FilterBox(props) {
     setFilterBoxEndDate,
     changeYear,
     changeQuarter,
-    getCurrentYear
+    getCurrentYear,
+    open
   } = props;
   const [updateUrlFlag, setUpdateUrlFlag] = useState(false);
-  const x = (theSuperCategories, categoriesCollected) => {
+
+  //theSuperCategories (Key Demographic, Information Demand, Business Behavior)
+  //categoriesCollected (categories selected ex. 'gender')
+  const xVar = (theSuperCategories, categoriesCollected) => {
     return theSuperCategories.map(superCategory => {
       return {
         label: superCategory.label,
         options: superCategory.options
+          //  filters out the already selected option
           .map(category => {
             return {
               label: !categoriesCollected.includes(category.label)
@@ -42,6 +49,17 @@ export default function FilterBox(props) {
     });
   };
 
+  const dataFilterVar = (theSuperCategories, categoriesCollected) => {
+    return theSuperCategories.map(superCategory => {
+      return {
+        label: superCategory.label,
+        options: superCategory.options
+      };
+    });
+  };
+
+  console.log(dataFilterVar);
+
   const FilterSelector = props => {
     const {
       filterSelectorName,
@@ -51,6 +69,11 @@ export default function FilterBox(props) {
 
       graphLabels
     } = props;
+
+    let index = i;
+    // console.log(`props`, props)
+    // console.log(`filterSelectorName`, filterSelectorName, filters, setFilters, i)
+    // console.log(`i`, index)
 
     // styles for the react select component
     const groupStyles = {
@@ -75,6 +98,7 @@ export default function FilterBox(props) {
       fontSize: 15
     };
     // controlling the super categories
+    //seems to not be in use
     const formatGroupLabel = data => (
       <div style={groupStyles}>
         <span style={itemStyle}>{data.label}</span>
@@ -117,6 +141,7 @@ export default function FilterBox(props) {
 
     const CategoryOptions = props => {
       let { i, filters, graphLabels, option } = props;
+
       // for options tag
       const changeOption = (i, filters, graphLabels, option) => {
         let optionFlags = {};
@@ -163,126 +188,179 @@ export default function FilterBox(props) {
       );
     };
 
-    const RenderCheckContainer = props => {
-      // do all conditional renderings using if statements for now
-      let { i, filters, graphLabels } = props;
+    //all 3 filtering options
+    if (filterSelectorName === "Data Series") {
+      return (
+        <div>
+          <form>
+            {/* labels filter */}
+            <p>{filterSelectorName}</p>
+            <Select
+              defaultValue={{ label: filters[index].selectedCategory }}
+              // isClearable
+              //seems not in use
+              formatGroupLabel={formatGroupLabel}
+              components={{ Control: ControlComponent }}
+              // isSearchable
+              onChange={e => {
+                setUpdateUrlFlag(!updateUrlFlag);
+                let optionFlags = {};
+                graphLabels[
+                  `${FilterBoxOptions.default[e.label].value.type}`
+                ].labels.forEach(option => {
+                  optionFlags = {
+                    ...optionFlags,
+                    [option]: false
+                  };
+                });
+                setFilters({
+                  ...filters,
+                  [index]: {
+                    ...filters[index],
+                    selectedCategory: e.label, //option
+                    selectedTableColumnName:
+                      FilterBoxOptions.default[e.label].value.type,
 
-      const showOptions = (i, filters, graphLabels) => {
-        if (filters[i].showOptions) {
-          return graphLabels[
-            `${filters[i].selectedTableColumnName}`
-          ].labels.map(option => (
-            <CategoryOptions
-              i={i}
+                    selectedTable:
+                      FilterBoxOptions.default[e.label].value.query,
+                    selectedOption: undefined,
+                    selectableOptions: { ...optionFlags }
+                  }
+                });
+              }}
+              name="color"
+              styles={colourStyles}
+              options={xVar(
+                FilterBoxOptions.superCategories,
+                Object.keys(filters)
+                  .map(filterId => {
+                    return filters[filterId].selectedCategory;
+                  })
+                  .filter(selectedCategory => selectedCategory.length > 0)
+              )}
+            />
+          </form>
+        </div>
+      );
+    } else if (filterSelectorName === "Compare SubSamples" && open === "bar") {
+      return (
+        <div>
+          <form>
+            {/* labels filter */}
+            <p>{filterSelectorName}</p>
+            <Select
+              defaultValue={{ label: filters[index].selectedCategory }}
+              // isClearable
+              //seems not in use
+              formatGroupLabel={formatGroupLabel}
+              components={{ Control: ControlComponent }}
+              // isSearchable
+              onChange={e => {
+                setUpdateUrlFlag(!updateUrlFlag);
+                let optionFlags = {};
+                graphLabels[
+                  `${FilterBoxOptions.default[e.label].value.type}`
+                ].labels.forEach(option => {
+                  optionFlags = {
+                    ...optionFlags,
+                    [option]: false
+                  };
+                });
+                setFilters({
+                  ...filters,
+                  [index]: {
+                    ...filters[index],
+                    selectedCategory: e.label, //option
+                    selectedTableColumnName:
+                      FilterBoxOptions.default[e.label].value.type,
+
+                    selectedTable:
+                      FilterBoxOptions.default[e.label].value.query,
+                    selectedOption: undefined,
+                    selectableOptions: { ...optionFlags }
+                  }
+                });
+              }}
+              name="color"
+              styles={colourStyles}
+              options={xVar(
+                FilterBoxOptions.superCategories,
+                Object.keys(filters)
+                  .map(filterId => {
+                    return filters[filterId].selectedCategory;
+                  })
+                  .filter(selectedCategory => selectedCategory.length > 0)
+              )}
+            />
+          </form>
+        </div>
+      );
+    } else if (filterSelectorName === "Compare SubSamples") {
+      return <></>;
+    } else if (filterSelectorName === "Data Filter") {
+      return (
+        <div>
+          <form>
+            {/* labels filter */}
+            <p>{filterSelectorName}</p>
+            <Select
+              defaultValue={{ label: filters[index].selectedCategory }}
+              // isClearable
+              //seems not in use
+              formatGroupLabel={formatGroupLabel}
+              components={{ Control: ControlComponent }}
+              // isSearchable
+              onChange={e => {
+                setUpdateUrlFlag(!updateUrlFlag);
+                let optionFlags = {};
+                graphLabels[
+                  `${FilterBoxOptions.default[e.label].value.type}`
+                ].labels.forEach(option => {
+                  optionFlags = {
+                    ...optionFlags,
+                    [option]: false
+                  };
+                });
+                setFilters({
+                  ...filters,
+                  [index]: {
+                    ...filters[index],
+                    selectedCategory: e.label, //option
+                    selectedTableColumnName:
+                      FilterBoxOptions.default[e.label].value.type,
+
+                    selectedTable:
+                      FilterBoxOptions.default[e.label].value.query,
+                    selectedOption: undefined,
+                    selectableOptions: { ...optionFlags }
+                  }
+                });
+              }}
+              name="color"
+              styles={colourStyles}
+              options={dataFilterVar(
+                FilterBoxOptions.superCategories,
+                Object.keys(filters)
+                  .map(filterId => {
+                    return filters[filterId].selectedCategory;
+                  })
+                  .filter(selectedCategory => selectedCategory.length > 0)
+              )}
+            />
+            {/* additional options below 'Data Series' and 'Add Filter' */}
+            <RenderCheckContainer
+              i={index}
               filters={filters}
               graphLabels={graphLabels}
-              option={option}
+              props={props}
+              CategoryOptions={CategoryOptions}
+              CheckboxContainer={CheckboxContainer}
+              setFilters={setFilters}
             />
-          ));
-        } else {
-          return graphLabels[`${filters[i].selectedTableColumnName}`].labels
-            .filter(option => {
-              return filters[i].selectableOptions[option];
-            })
-            .map(option => (
-              <CategoryOptions
-                i={i}
-                filters={filters}
-                graphLabels={graphLabels}
-                option={option}
-              />
-            ));
-        }
-      };
-
-      if (i !== String(1)) {
-        if (graphLabels[`${filters[i].selectedTableColumnName}`]) {
-          return (
-            <CheckboxContainer>
-              <p>Please pick an option: </p>
-              <button
-                onClick={() => {
-                  setFilters({
-                    ...filters,
-                    [i]: {
-                      ...filters[i],
-                      showOptions: !filters[i].showOptions
-                    }
-                    // add all the options here
-                  });
-                }}
-              >
-                {/* maybe set this one along with the selected option flag? */}
-                {filters[i].showOptions ? "Hide" : "Show"}
-              </button>
-
-              {showOptions(i, filters, graphLabels)}
-            </CheckboxContainer>
-          );
-        } else {
-          return <div></div>;
-        }
-      } else {
-        return <div></div>;
-      }
-    };
-
-    return (
-      <div>
-        <form>
-          <p>{filterSelectorName}</p>
-          <Select
-            defaultValue={{ label: filters[i].selectedCategory }}
-            // isClearable
-
-            formatGroupLabel={formatGroupLabel}
-            components={{ Control: ControlComponent }}
-            // isSearchable
-            onChange={e => {
-              setUpdateUrlFlag(!updateUrlFlag);
-              let optionFlags = {};
-              graphLabels[
-                `${FilterBoxOptions.default[e.label].value.type}`
-              ].labels.forEach(option => {
-                optionFlags = {
-                  ...optionFlags,
-                  [option]: false
-                };
-              });
-              setFilters({
-                ...filters,
-                [i]: {
-                  ...filters[i],
-                  selectedCategory: e.label, //option
-                  selectedTableColumnName:
-                    FilterBoxOptions.default[e.label].value.type,
-
-                  selectedTable: FilterBoxOptions.default[e.label].value.query,
-                  selectedOption: undefined,
-                  selectableOptions: { ...optionFlags }
-                }
-              });
-            }}
-            name="color"
-            styles={colourStyles}
-            options={x(
-              FilterBoxOptions.superCategories,
-              Object.keys(filters)
-                .map(filterId => {
-                  return filters[filterId].selectedCategory;
-                })
-                .filter(selectedCategory => selectedCategory.length > 0)
-            )}
-          />
-
-          <RenderCheckContainer
-            i={i}
-            filters={filters}
-            graphLabels={graphLabels}
-          />
-        </form>
-      </div>
-    );
+          </form>
+        </div>
+      );
+    }
   };
   const token = getToken();
   let tier;
@@ -311,7 +389,7 @@ export default function FilterBox(props) {
     };
   });
 
-  let ourSearch = useHistory().location.search;
+  //let ourSearch = useHistory().location.search;
   const inverseConvertOptionUrl = option => {
     // these come from the selection options the user will see
     // -1 means the search failed
@@ -353,7 +431,7 @@ export default function FilterBox(props) {
       setFilterBoxEndDate
     ]
   );
-
+  //return add Filter button
   return (
     <>
       <DropdownContainer>
@@ -403,64 +481,22 @@ export default function FilterBox(props) {
           </Button>
         </div>
         <form>
-          {/* That if tier is undefined(not logged in)? The reliability of this logic is in questino*/}
-          {tier === "ADMIN" ||
-          tier === "PAID" ||
-          tier === "GOV_ROLE" ||
-          newSub ? (
-            <DateContainer>
-              <StartEndContainer>
-                <span>
-                  <p>Start</p>
-                  <input
-                    name="startData"
-                    type="date"
-                    value={filterBoxStartDate}
-                    disabled={loading}
-                    onChange={e => setFilterBoxStartDate(e.target.value)}
-                  />
-                </span>
-                <span>
-                  <p>End</p>
-                  <input
-                    disabled={loading}
-                    name="endData"
-                    type="date"
-                    value={filterBoxEndDate}
-                    id="today"
-                    onChange={e => setFilterBoxEndDate(e.target.value)}
-                  />
-                </span>
-              </StartEndContainer>
-              <YearPicker>
-                <MonthButtons onClick={changeQuarter("Q1")}>Q1</MonthButtons>
-                <MonthButtons onClick={changeQuarter("Q2")}>Q2</MonthButtons>
-                <MonthButtons onClick={changeQuarter("Q3")}>Q3</MonthButtons>
-                <MonthButtons onClick={changeQuarter("Q4")}>Q4</MonthButtons>
-                <YearButtons
-                  onClick={changeYear((getCurrentYear() - 3).toString())}
-                >
-                  {(getCurrentYear() - 3).toString()}
-                </YearButtons>
-                <YearButtons
-                  onClick={changeYear((getCurrentYear() - 2).toString())}
-                >
-                  {(getCurrentYear() - 2).toString()}
-                </YearButtons>
-                <YearButtons
-                  onClick={changeYear((getCurrentYear() - 1).toString())}
-                >
-                  {(getCurrentYear() - 1).toString()}
-                </YearButtons>
-                <YearButtons onClick={changeYear(getCurrentYear().toString())}>
-                  {getCurrentYear().toString()}
-                </YearButtons>
-              </YearPicker>
-            </DateContainer>
-          ) : (
-            <CalendarModal />
-          )}
-
+          <CalendarParent
+            tier={tier}
+            newSub={newSub}
+            filterBoxStartDate={filterBoxStartDate}
+            setFilterBoxStartDate={setFilterBoxStartDate}
+            filterBoxEndDate={filterBoxEndDate}
+            setFilterBoxEndDate={setFilterBoxEndDate}
+            changeYear={changeYear}
+            changeQuarter={changeQuarter}
+            getCurrentYear={getCurrentYear}
+            changeYear={changeYear}
+            changeQuarter={changeQuarter}
+            getCurrentYear={getCurrentYear}
+            loading={loading}
+            open={props.open}
+          />
           <ResetButton
             // className="reset-btn"
             onClick={e => {

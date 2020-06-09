@@ -14,7 +14,8 @@ const GraphParse = ({
     data = filterByDate(data, filterBoxStartDate, filterBoxEndDate);
   }
 
-  const chartData = dataParse(
+  //used on SocialMedia.js
+  let chartData = dataParse(
     filters[0].selectedTableColumnName,
     data[`${queryType}`],
     filters[1].selectedTableColumnName,
