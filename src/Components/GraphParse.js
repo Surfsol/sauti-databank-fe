@@ -11,7 +11,7 @@ const GraphParse = ({
   filterBoxEndDate,
   setChartDataSM
 }) => {
-  if (data.sessionData != undefined && queryType === "sessionsData") {
+  if (queryType === "sessionsData") {
     data = filterByDate(data, filterBoxStartDate, filterBoxEndDate);
   }
 
